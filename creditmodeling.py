@@ -138,6 +138,77 @@ for i in columns_to_be_kept:
 
     if p_value <= 0.05:
         columns_to_be_kept_numerical.append(i)
+        
+
+# listing all the final features
+features = columns_to_be_kept_numerical + ['MARITALSTATUS', 'EDUCATION', 'GENDER', 'last_prod_enq2', 'first_prod_enq2']
+df = df[features + ['Approved_Flag']]
+
+
+# Label encoding for the categorical features
+['MARITALSTATUS', 'EDUCATION', 'GENDER' , 'last_prod_enq2' ,'first_prod_enq2']
+
+
+
+df['MARITALSTATUS'].unique()   
+df['EDUCATION'].unique()
+df['GENDER'].unique()
+df['last_prod_enq2'].unique()
+df['first_prod_enq2'].unique()
+
+# Asked from business end users 
+# Ordinal feature -- EDUCATION
+# SSC            : 1
+# 12TH           : 2
+# GRADUATE       : 3
+# UNDER GRADUATE : 3
+# POST-GRADUATE  : 4
+# OTHERS         : 1
+# PROFESSIONAL   : 3
+
+df.loc[df['EDUCATION'] == 'SSC',['EDUCATION']]              = 1
+df.loc[df['EDUCATION'] == '12TH',['EDUCATION']]             = 2
+df.loc[df['EDUCATION'] == 'GRADUATE',['EDUCATION']]         = 3
+df.loc[df['EDUCATION'] == 'UNDER GRADUATE',['EDUCATION']]   = 3
+df.loc[df['EDUCATION'] == 'POST-GRADUATE',['EDUCATION']]    = 4
+df.loc[df['EDUCATION'] == 'OTHERS',['EDUCATION']]           = 1
+df.loc[df['EDUCATION'] == 'PROFESSIONAL',['EDUCATION']]     = 3
+
+
+
+
+df['EDUCATION'].value_counts()
+df['EDUCATION'] = df['EDUCATION'].astype(int)
+df.info()
+
+
+df_encoded = pd.get_dummies(df, columns=['MARITALSTATUS','GENDER', 'last_prod_enq2' ,'first_prod_enq2'])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
